@@ -9,9 +9,10 @@ class MoviesProvider {
         Movie(
             id: '2',
             name: 'Captain Marvel',
-            image: 'assets/images/movies/arcane.jpg'),
-        Movie(id: '3', name: 'Joker', image: 'assets/images/movies/arcane.jpg'),
+            image: 'assets/images/movies/captain.jpeg'),
         Movie(
-            id: '4', name: 'Hobbit', image: 'assets/images/movies/arcane.jpg'),
+            id: '3', name: 'Joker', image: 'assets/images/movies/hobbit.jpeg'),
+        Movie(
+            id: '4', name: 'Hobbit', image: 'assets/images/movies/joker.jpeg'),
       ];
 }

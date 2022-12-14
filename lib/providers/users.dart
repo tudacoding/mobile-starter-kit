@@ -13,7 +13,8 @@ class UsersProvider {
           name: 'Timur K.',
           image: UserImage(
             image: 'assets/images/users/woman.jpeg',
-            sourceLink: 'https://pbs.twimg.com/media/DUt0bi-X4AEBeXb.png',
+            sourceLink:
+                'https://cdn.cardsrealm.com/images/uploads/1636374920.jpeg',
             sourceName: 'Daniel Monteiro',
           ),
           bio: 'Hello,',

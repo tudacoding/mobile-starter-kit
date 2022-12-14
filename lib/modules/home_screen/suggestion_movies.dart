@@ -1,38 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_starter_kit/classes/index.dart';
+import 'package:mobile_starter_kit/providers/movies.dart';
 
 class SuggestionMovies extends StatelessWidget {
-  const SuggestionMovies({super.key});
+  const SuggestionMovies({super.key, required this.isShowTitle});
+
+  final bool isShowTitle;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 20.0),
-      height: 200.0,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: <Widget>[
-          SizedBox(
-            width: 160.0,
-            child: Image.asset('assets/images/users/joe.jpg'),
+    final MoviesProvider moviesProvider = MoviesProvider();
+    final List<Movie> suggestionMovies = moviesProvider.suggestionMovies;
+    return Column(
+      children: [
+        Container(
+          margin: const EdgeInsets.symmetric(vertical: 10.0),
+          height: 350.0,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: <Widget>[
+              for (final movie in suggestionMovies)
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: SizedBox(
+                    width: 220.0,
+                    child: Image.asset(
+                      movie.image,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+            ],
           ),
-          Container(
-            width: 160.0,
-            color: Colors.blue,
+        ),
+        if (isShowTitle)
+          Column(
+            children: const [
+              Text(
+                'Episode 1',
+                style: TextStyle(color: Colors.white60),
+              ),
+              Text(
+                'Pow Pow',
+                style: TextStyle(color: Colors.white, fontSize: 30),
+              )
+            ],
           ),
-          Container(
-            width: 160.0,
-            color: Colors.green,
-          ),
-          Container(
-            width: 160.0,
-            color: Colors.yellow,
-          ),
-          Container(
-            width: 160.0,
-            color: Colors.orange,
-          ),
-        ],
-      ),
+      ],
     );
   }
 }
