@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_starter_kit/classes/user.dart';
+import 'package:mobile_starter_kit/plugins/theme.dart';
 import 'package:mobile_starter_kit/providers/users.dart';
 
-class UserProfile extends StatelessWidget {
+class UserProfile extends StatefulWidget {
   const UserProfile({super.key});
 
   @override
+  State<UserProfile> createState() => _UserProfileState();
+}
+
+class _UserProfileState extends State<UserProfile> {
+  @override
   Widget build(BuildContext context) {
+    final AppTheme theme = AppTheme.of(context);
     final UsersProvider usersProvider = UsersProvider();
     final User user = usersProvider.randomUser;
+
     return ListTile(
       leading: CircleAvatar(
         radius: 30.0,
@@ -28,8 +36,8 @@ class UserProfile extends StatelessWidget {
       ),
       trailing: IconButton(
         color: Colors.white,
-        onPressed: () {},
-        icon: const Icon(Icons.notifications_none_outlined),
+        onPressed: theme.switchTheme,
+        icon: const Icon(Icons.dark_mode),
       ),
     );
   }

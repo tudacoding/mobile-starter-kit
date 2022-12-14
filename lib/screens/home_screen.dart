@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           body: Container(
-            color: Colors.black,
+            color: Theme.of(context).primaryColor,
             child: LayoutBuilder(
               builder: (context, constraints) => TabBarView(
                 children: [

@@ -35,14 +35,15 @@ class SuggestionMovies extends StatelessWidget {
         ),
         if (isShowTitle)
           Column(
-            children: const [
+            children: [
               Text(
                 'Episode 1',
-                style: TextStyle(color: Colors.white60),
+                style: TextStyle(color: Theme.of(context).primaryColorDark),
               ),
               Text(
                 'Pow Pow',
-                style: TextStyle(color: Colors.white, fontSize: 30),
+                style: TextStyle(
+                    color: Theme.of(context).primaryColorDark, fontSize: 30),
               )
             ],
           ),

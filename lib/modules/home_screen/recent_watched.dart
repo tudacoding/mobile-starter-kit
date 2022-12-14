@@ -12,15 +12,15 @@ class RecentWatched extends StatelessWidget {
       child: Column(
         children: [
           Row(
-            children: const [
+            children: [
               Text(
                 'Recent Watched',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Theme.of(context).primaryColorDark),
               ),
-              Spacer(),
+              const Spacer(),
               Text(
                 'See All',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Theme.of(context).primaryColorDark),
               ),
             ],
           ),
