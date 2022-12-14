@@ -1,5 +1,6 @@
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_starter_kit/modules/home_screen/suggestion_movies.dart';
+import 'package:mobile_starter_kit/modules/home_screen/user_profile.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,106 +12,64 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Startup Name Generator',
+      title: 'Netflix',
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
+          backgroundColor: Color.fromARGB(255, 30, 30, 30),
         ),
       ),
-      home: const RandomWords(),
+      home: const HomeScreen(),
     );
   }
 }
 
-class RandomWords extends StatefulWidget {
-  const RandomWords({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<RandomWords> createState() => _RandomWordsState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _RandomWordsState extends State<RandomWords> {
-  final _suggestions = <WordPair>[];
-  final _saved = <WordPair>{};
-  final _biggerFont = const TextStyle(fontSize: 18);
-  void _pushSaved() {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (context) {
-          final tiles = _saved.map(
-            (pair) {
-              return ListTile(
-                title: Text(
-                  pair.asPascalCase,
-                  style: _biggerFont,
-                ),
-              );
-            },
-          );
-          final divided = tiles.isNotEmpty
-              ? ListTile.divideTiles(
-                  context: context,
-                  tiles: tiles,
-                ).toList()
-              : <Widget>[];
-
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('Saved Suggestions'),
-            ),
-            body: ListView(children: divided),
-          );
-        },
-      ),
-    );
-  }
-
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Startup Name Generator'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.list),
-            onPressed: _pushSaved,
-            tooltip: 'Saved Suggestions',
+    return DefaultTabController(
+        length: 4,
+        child: Scaffold(
+          appBar: AppBar(
+            toolbarHeight: 80,
+            centerTitle: false,
+            title: const Padding(
+              padding: EdgeInsets.only(bottom: 10),
+              child: UserProfile(),
+            ),
+            bottom: const TabBar(
+              isScrollable: true,
+              tabs: [
+                Tab(text: 'Movies'),
+                Tab(text: 'TV Shows'),
+                Tab(text: 'Anime'),
+                Tab(text: 'My List'),
+              ],
+            ),
           ),
-        ],
-      ),
-      body: ListView.builder(
-        padding: const EdgeInsets.all(16.0),
-        itemBuilder: (context, i) {
-          if (i.isOdd) return const Divider();
-
-          final index = i ~/ 2;
-          if (index >= _suggestions.length) {
-            _suggestions.addAll(generateWordPairs().take(10));
-          }
-          final alreadySaved = _saved.contains(_suggestions[index]);
-          return ListTile(
-            title: Text(
-              _suggestions[index].asPascalCase,
-              style: _biggerFont,
+          body: Container(
+            color: Colors.black,
+            child: LayoutBuilder(
+              builder: (context, constraints) => TabBarView(
+                children: [
+                  SingleChildScrollView(
+                    child: Column(
+                      children: const [SuggestionMovies()],
+                    ),
+                  ),
+                  const Text('TV Shows'),
+                  const Text('Anime'),
+                  const Text('My List')
+                ],
+              ),
             ),
-            trailing: Icon(
-              alreadySaved ? Icons.favorite : Icons.favorite_border,
-              color: alreadySaved ? Colors.red : null,
-              semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
-            ),
-            onTap: () {
-              setState(() {
-                if (alreadySaved) {
-                  _saved.remove(_suggestions[index]);
-                } else {
-                  _saved.add(_suggestions[index]);
-                }
-              });
-            },
-          );
-        },
-      ),
-    );
+          ),
+        ));
   }
 }
