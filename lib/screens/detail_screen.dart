@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:mobile_starter_kit/modules/detail_screen/post_list.dart';
 import 'package:mobile_starter_kit/modules/home_screen/user_profile.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -13,7 +13,7 @@ class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 4,
+        length: 2,
         child: Scaffold(
           appBar: AppBar(
             toolbarHeight: 80,
@@ -25,25 +25,18 @@ class _DetailScreenState extends State<DetailScreen> {
             bottom: const TabBar(
               isScrollable: true,
               tabs: [
-                Tab(text: 'Movies'),
-                Tab(text: 'TV Shows'),
-                Tab(text: 'Anime'),
-                Tab(text: 'My List'),
+                Tab(text: 'Users'),
+                Tab(text: 'Posts'),
               ],
             ),
           ),
           body: Container(
             color: Theme.of(context).primaryColor,
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Row(
+            child: LayoutBuilder(
+              builder: (context, constraints) => const TabBarView(
                 children: [
-                  const Text('Detail Page'),
-                  const Spacer(),
-                  ElevatedButton(
-                    onPressed: () => GoRouter.of(context).go('/'),
-                    child: const Text("Go to Home page"),
-                  ),
+                  Text('Users'),
+                  PostsList(),
                 ],
               ),
             ),

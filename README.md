@@ -1,6 +1,6 @@
 # mobile_starter_kit
 
-A new Flutter project.
+A Flutter project created by ThinhNguyen.
 
 ## Getting Started
 
@@ -14,3 +14,18 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## Note
+
+Install dependencies in pubspec.yaml
+
+```
+flutter pub add package_name
+flutter pub add --dev package_name
+```
+
+Run mobx codegen
+
+```
+flutter packages pub run build_runner watch --delete-conflicting-outputs
+```
