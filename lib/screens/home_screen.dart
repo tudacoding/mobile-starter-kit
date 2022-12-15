@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobile_starter_kit/modules/home_screen/recent_watched.dart';
 import 'package:mobile_starter_kit/modules/home_screen/suggestion_movies.dart';
 import 'package:mobile_starter_kit/modules/home_screen/user_profile.dart';
+import 'package:mobile_starter_kit/store/counter_store.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,6 +14,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late CounterStore _counterStore;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _counterStore = Provider.of<CounterStore>(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -40,9 +51,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   SingleChildScrollView(
                     child: Column(
-                      children: const [
-                        SuggestionMovies(isShowTitle: true),
-                        RecentWatched()
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+                          child: Row(
+                            children: [
+                              ElevatedButton(
+                                  style: const ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStatePropertyAll<Color>(
+                                              Colors.greenAccent)),
+                                  onPressed: () =>
+                                      _counterStore.incrementCounter(),
+                                  child: const Text('Increase')),
+                              const Spacer(),
+                              Observer(builder: (_) {
+                                return Text(
+                                  '${_counterStore.counter}',
+                                  style: Theme.of(context).textTheme.headline4,
+                                );
+                              })
+                            ],
+                          ),
+                        ),
+                        const SuggestionMovies(isShowTitle: true),
+                        const RecentWatched(),
                       ],
                     ),
                   ),
