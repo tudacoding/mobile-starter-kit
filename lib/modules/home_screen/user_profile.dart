@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mobile_starter_kit/classes/user.dart';
 import 'package:mobile_starter_kit/plugins/theme.dart';
 import 'package:mobile_starter_kit/providers/users.dart';
@@ -18,24 +19,29 @@ class _UserProfileState extends State<UserProfile> {
     final User user = usersProvider.randomUser;
 
     return ListTile(
-      leading: CircleAvatar(
-        radius: 30.0,
-        backgroundImage: NetworkImage(user.image.sourceLink),
-        backgroundColor: Colors.transparent,
+      leading: GestureDetector(
+        onTap: () => GoRouter.of(context).go('/detail'),
+        child: CircleAvatar(
+          radius: 30.0,
+          backgroundImage: NetworkImage(user.image.sourceLink),
+          backgroundColor: Colors.transparent,
+        ),
       ),
       title: Text(
         user.bio,
         maxLines: 2,
-        style: const TextStyle(color: Colors.white),
+        style: TextStyle(color: Theme.of(context).primaryColorDark),
         overflow: TextOverflow.ellipsis,
       ),
       subtitle: Text(
         user.name,
-        style: const TextStyle(
-            color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+        style: TextStyle(
+            color: Theme.of(context).primaryColorDark,
+            fontSize: 20,
+            fontWeight: FontWeight.bold),
       ),
       trailing: IconButton(
-        color: Colors.white,
+        color: Theme.of(context).primaryColorDark,
         onPressed: theme.switchTheme,
         icon: const Icon(Icons.dark_mode),
       ),

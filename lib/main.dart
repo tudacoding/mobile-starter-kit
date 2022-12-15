@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_starter_kit/plugins/router.dart';
 import 'package:mobile_starter_kit/plugins/theme.dart';
-import 'package:mobile_starter_kit/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -15,10 +15,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Netflix',
-      theme: AppTheme.of(context, listen: true).currentTheme,
-      home: const HomeScreen(),
-    );
+    return MaterialApp.router(
+        title: 'Netflix',
+        theme: AppTheme.of(context, listen: true).currentTheme,
+        routerConfig: router);
   }
 }

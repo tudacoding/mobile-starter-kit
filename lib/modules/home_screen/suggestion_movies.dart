@@ -38,13 +38,9 @@ class SuggestionMovies extends StatelessWidget {
             children: [
               Text(
                 'Episode 1',
-                style: TextStyle(color: Theme.of(context).primaryColorDark),
+                style: Theme.of(context).textTheme.bodySmall,
               ),
-              Text(
-                'Pow Pow',
-                style: TextStyle(
-                    color: Theme.of(context).primaryColorDark, fontSize: 30),
-              )
+              Text('Pow Pow', style: Theme.of(context).textTheme.bodyLarge)
             ],
           ),
       ],
