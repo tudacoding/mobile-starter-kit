@@ -1,3 +1,4 @@
+import 'package:mobile_starter_kit/models/resource/resource.dart';
 import 'package:mobile_starter_kit/models/restaurant/restaurant.dart';
 
 class _JsonHandler<T> {
@@ -36,5 +37,7 @@ class ModelJsonHandler {
   static final List _handlers = [
     _JsonHandler<Restaurant>(
         (json) => Restaurant.fromJson(json), (model) => model.toJson()),
+    _JsonHandler<Resource>(
+        (json) => Resource.fromJson(json), (model) => model.toJson()),
   ];
 }

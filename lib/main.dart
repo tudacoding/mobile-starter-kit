@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_starter_kit/plugins/router.dart';
 import 'package:mobile_starter_kit/plugins/theme.dart';
-import 'package:mobile_starter_kit/store/counter_store.dart';
+import 'package:mobile_starter_kit/store/counter/counter_store.dart';
+import 'package:mobile_starter_kit/store/resource/resource_store.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -13,6 +14,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   final CounterStore _counterStore = CounterStore();
+  final ResourceStore _resourceStore = ResourceStore();
 
   MyApp({super.key});
 
@@ -21,6 +23,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           Provider<CounterStore>(create: (_) => _counterStore),
+          Provider<ResourceStore>(create: (_) => _resourceStore),
         ],
         child: MaterialApp.router(
             title: 'Netflix',

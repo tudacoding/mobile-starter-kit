@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobile_starter_kit/modules/home_screen/recent_watched.dart';
 import 'package:mobile_starter_kit/modules/home_screen/suggestion_movies.dart';
 import 'package:mobile_starter_kit/modules/home_screen/user_profile.dart';
-import 'package:mobile_starter_kit/store/counter_store.dart';
+import 'package:mobile_starter_kit/store/counter/counter_store.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {

@@ -32,12 +32,9 @@ class ApiHandler {
   final Map<Type, String> routeMap;
 
   ApiHandler(String baseUrl,
-      {bool? requireAuth,
-      required Map<Type, String> routeMap,
-      bool autoAddVendorId = true})
+      {bool? requireAuth, required this.routeMap, bool autoAddVendorId = true})
       : dio = Dio(BaseOptions(baseUrl: baseUrl)),
-        requireAuth = requireAuth ?? false,
-        routeMap = routeMap {
+        requireAuth = requireAuth ?? false {
     if (autoAddVendorId) {
       dio.interceptors.add(vendorRequestInceptor);
     }
