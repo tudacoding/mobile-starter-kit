@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_starter_kit/plugins/get_it.dart';
 import 'package:mobile_starter_kit/plugins/router.dart';
 import 'package:mobile_starter_kit/plugins/theme.dart';
 import 'package:mobile_starter_kit/store/counter/counter_store.dart';
@@ -6,6 +7,7 @@ import 'package:mobile_starter_kit/store/resource/resource_store.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  SetupGetIt.init();
   runApp(ChangeNotifierProvider(
     create: (_) => AppTheme(),
     child: MyApp(),

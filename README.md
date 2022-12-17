@@ -36,7 +36,7 @@ Run mobx codegen build mỗi khi thay đổi
 flutter packages pub run build_runner watch --delete-conflicting-outputs
 ```
 
-Sử dụng freezed để thêm vào model
+## Sử dụng freezed để thêm vào model
 
 - Tất cả các thuộc tính lưu trữ cái chúng ta cần(và thiết lập chúng là final).
 - Phương thức toString().
@@ -45,10 +45,17 @@ Sử dụng freezed để thêm vào model
 - Phương thức copyWith().
 - Phương thức toJson().
 
-Cài thêm extension JSON to Dart
+## Cài thêm extension JSON to Dart
+
 Sử dụng JSON to Dart From Clipboard to Class Generation -> giúp chuyển json tự động thành class
 Và khi class được tạo ra watch freezed đang chạy nó sẽ tự động render ra code freezed
 
-Luồng dữ liệu
+## Luồng dữ liệu
 
 Tạo Model -> gắn vào index model -> viết \*\_api_handler -> gắn vào api_service -> dùng api_service trong store
+
+## Tại sao phải sử dụng get_it cho api service
+
+Singleton trái ngược với factory, chỉ tạo ra một instance duy nhất kể từ khi app khởi động, sau đó nếu bất kì chỗ nào có dùng dến thì sẽ chỉ trả về instance đã tạo trước đó. Do đó xuyêt suốt app, bạn sẽ chỉ sử dụng một instance của object đó mà thôi.
+
+-> Factory không nên dùng nếu như object của bạn có chứa các logic code quá phức tạp dẫn đến việc làm chậm quá trình khởi tạo và lãng phí tài nguyên do luôn phải tạo lại api service mới mỗi khi cần đến.

@@ -7,8 +7,7 @@ part 'resource_store.g.dart';
 class ResourceStore = ResourceStoreBase with _$ResourceStore;
 
 abstract class ResourceStoreBase with Store {
-  final api = GetIt.instance<ApiService>();
-
+  final api = GetIt.I.get<ApiService>();
   @observable
   List<Resource>? resources;
 
