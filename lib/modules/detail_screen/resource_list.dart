@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobile_starter_kit/plugins/ok_toast.dart';
 import 'package:mobile_starter_kit/store/resource/resource_store.dart';
 import 'package:provider/provider.dart';
 
@@ -13,6 +14,7 @@ class ResourceList extends StatefulWidget {
 class _ResourceListState extends State<ResourceList> {
   onPressed(store) async {
     await store.fetchData();
+    ToastHelper.success('Thành công!');
   }
 
   @override
