@@ -1,4 +1,4 @@
-import 'package:mobile_starter_kit/classes/image.dart';
+import 'package:mobile_starter_kit/helpers/classes/image.dart';
 
 class User {
   const User({

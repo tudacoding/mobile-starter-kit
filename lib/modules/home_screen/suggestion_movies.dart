@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_starter_kit/classes/index.dart';
-import 'package:mobile_starter_kit/providers/movies.dart';
+import 'package:mobile_starter_kit/helpers/classes/index.dart';
+import 'package:mobile_starter_kit/helpers/providers/movies.dart';
 
 class SuggestionMovies extends StatelessWidget {
   const SuggestionMovies({super.key, required this.isShowTitle});

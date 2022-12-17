@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:collection/collection.dart';
-import 'package:mobile_starter_kit/classes/image.dart';
+import 'package:mobile_starter_kit/helpers/classes/image.dart';
 import '../classes/index.dart';
 
 class UsersProvider {

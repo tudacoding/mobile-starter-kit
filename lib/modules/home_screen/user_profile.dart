@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mobile_starter_kit/classes/user.dart';
+import 'package:mobile_starter_kit/helpers/classes/user.dart';
 import 'package:mobile_starter_kit/plugins/theme.dart';
-import 'package:mobile_starter_kit/providers/users.dart';
+import 'package:mobile_starter_kit/helpers/providers/users.dart';
 
 class UserProfile extends StatefulWidget {
   const UserProfile({super.key});
