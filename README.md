@@ -44,3 +44,7 @@ Sử dụng freezed để thêm vào model
 - Biến hashCode.
 - Phương thức copyWith().
 - Phương thức toJson().
+
+Cài thêm extension JSON to Dart
+Sử dụng JSON to Dart From Clipboard to Class Generation -> giúp chuyển json tự động thành class
+Và khi class được tạo ra watch freezed đang chạy nó sẽ tự động render ra code freezed

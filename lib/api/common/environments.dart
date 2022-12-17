@@ -61,7 +61,7 @@ class DevEnv implements IEnvironment {
       "https://ilx0gvnp3c.execute-api.ap-southeast-1.amazonaws.com/";
   @override
   String resourceUrl =
-      "https://7tzfwfq4pd.execute-api.ap-southeast-1.amazonaws.com/prod/resource/";
+      "https://7tzfwfq4pd.execute-api.ap-southeast-1.amazonaws.com/prod/";
   @override
   String ratingUrl =
       "https://65fygwae5a.execute-api.ap-southeast-1.amazonaws.com/prod/";
@@ -120,7 +120,7 @@ class ProdEnv implements IEnvironment {
       "https://wj7b91qpll.execute-api.ap-southeast-1.amazonaws.com/";
   @override
   String resourceUrl =
-      "https://akprowk3pj.execute-api.ap-southeast-1.amazonaws.com/prod/resource/";
+      "https://akprowk3pj.execute-api.ap-southeast-1.amazonaws.com/prod/";
   @override
   String ratingUrl =
       "https://wix7qzdtbg.execute-api.ap-southeast-1.amazonaws.com/prod/";
