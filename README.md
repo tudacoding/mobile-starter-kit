@@ -24,8 +24,23 @@ flutter pub add package_name
 flutter pub add --dev package_name
 ```
 
-Run mobx codegen
+Run mobx codegen build 1 lần
+
+```
+flutter packages pub run build_runner build --delete-conflicting-outputs
+```
+
+Run mobx codegen build mỗi khi thay đổi
 
 ```
 flutter packages pub run build_runner watch --delete-conflicting-outputs
 ```
+
+Sử dụng freezed để thêm vào model
+
+- Tất cả các thuộc tính lưu trữ cái chúng ta cần(và thiết lập chúng là final).
+- Phương thức toString().
+- Phương thức ==.
+- Biến hashCode.
+- Phương thức copyWith().
+- Phương thức toJson().
