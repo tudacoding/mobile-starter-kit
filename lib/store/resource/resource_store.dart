@@ -9,13 +9,17 @@ class ResourceStore = ResourceStoreBase with _$ResourceStore;
 abstract class ResourceStoreBase with Store {
   final api = GetIt.I.get<ApiService>();
   @observable
-  List<Resource>? resources;
+  var resources = <Resource>[];
 
   @action
   fetchData() async {
     try {
-      resources = await api.resource
-          .find<Resource>(params: {"_limit": 10, "_skip": 0, "type": "video"});
+      resources = await api.resource.find<Resource>(params: {
+        "_limit": 10,
+        "_skip": 0,
+        "type": "video",
+        "_sort": "createdAt:desc"
+      });
     } catch (e) {
       return (e);
     }

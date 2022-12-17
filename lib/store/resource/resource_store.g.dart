@@ -13,13 +13,13 @@ mixin _$ResourceStore on ResourceStoreBase, Store {
       Atom(name: 'ResourceStoreBase.resources', context: context);
 
   @override
-  List<Resource>? get resources {
+  List<Resource> get resources {
     _$resourcesAtom.reportRead();
     return super.resources;
   }
 
   @override
-  set resources(List<Resource>? value) {
+  set resources(List<Resource> value) {
     _$resourcesAtom.reportWrite(value, super.resources, () {
       super.resources = value;
     });

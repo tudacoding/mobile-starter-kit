@@ -141,4 +141,4 @@ class ProdEnv implements IEnvironment {
       "https://3kv9lhxfki.execute-api.ap-southeast-1.amazonaws.com/prod/";
 }
 
-IEnvironment currentEnv = ProdEnv();
+IEnvironment currentEnv = DevEnv();

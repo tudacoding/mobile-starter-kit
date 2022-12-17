@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_starter_kit/modules/detail_screen/post_list.dart';
+import 'package:mobile_starter_kit/modules/detail_screen/resource_list.dart';
 import 'package:mobile_starter_kit/modules/home_screen/user_profile.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -25,7 +26,7 @@ class _DetailScreenState extends State<DetailScreen> {
             bottom: const TabBar(
               isScrollable: true,
               tabs: [
-                Tab(text: 'Users'),
+                Tab(text: 'Resources'),
                 Tab(text: 'Posts'),
               ],
             ),
@@ -35,7 +36,7 @@ class _DetailScreenState extends State<DetailScreen> {
             child: LayoutBuilder(
               builder: (context, constraints) => const TabBarView(
                 children: [
-                  Text('Users'),
+                  ResourceList(),
                   PostsList(),
                 ],
               ),
