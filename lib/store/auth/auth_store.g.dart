@@ -56,6 +56,28 @@ mixin _$AuthStore on AuthStoreBase, Store {
     return _$loginAsyncAction.run(() => super.login(email, password));
   }
 
+  late final _$logoutAsyncAction =
+      AsyncAction('AuthStoreBase.logout', context: context);
+
+  @override
+  Future logout() {
+    return _$logoutAsyncAction.run(() => super.logout());
+  }
+
+  late final _$AuthStoreBaseActionController =
+      ActionController(name: 'AuthStoreBase', context: context);
+
+  @override
+  dynamic tokenRefreshed(dynamic refreshModel) {
+    final _$actionInfo = _$AuthStoreBaseActionController.startAction(
+        name: 'AuthStoreBase.tokenRefreshed');
+    try {
+      return super.tokenRefreshed(refreshModel);
+    } finally {
+      _$AuthStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
