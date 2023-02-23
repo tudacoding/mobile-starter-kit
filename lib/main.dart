@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_starter_kit/plugins/get_it.dart';
@@ -9,6 +10,28 @@ import 'package:mobile_starter_kit/store/counter/counter_store.dart';
 import 'package:mobile_starter_kit/store/resource/resource_store.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+bool isFlutterLocalNotificationsInitialized = false;
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await setupFlutterNotifications();
+  print('Handling a background message ${message.notification?.title}');
+}
+
+Future<void> setupFlutterNotifications() async {
+  print('setup Flutter noti $isFlutterLocalNotificationsInitialized');
+  if (isFlutterLocalNotificationsInitialized) return;
+  print('ask for enable');
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    alert: true,
+    badge: true,
+    sound: true,
+  );
+  isFlutterLocalNotificationsInitialized = true;
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +40,11 @@ void main() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
   runApp(ChangeNotifierProvider(
     create: (_) => AppTheme(),
     child: MyApp(),
