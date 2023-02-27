@@ -1,4 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_starter_kit/plugins/get_it.dart';
@@ -15,10 +16,22 @@ import 'firebase_options.dart';
 
 bool isFlutterLocalNotificationsInitialized = false;
 
+// TODO: Add stream controller
+// TODO: Define the background message handler
+
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await setupFlutterNotifications();
-  print('Handling a background message ${message.notification?.title}');
+  // print('run =');
+  // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // await setupFlutterNotifications();
+  // print('Handling a background message ${message.notification?.title}');
+  await Firebase.initializeApp();
+
+  if (kDebugMode) {
+    print("Handling a background message: ${message.messageId}");
+    print('Message data: ${message.data}');
+    print('Message notification: ${message.notification?.title}');
+    print('Message notification: ${message.notification?.body}');
+  }
 }
 
 Future<void> setupFlutterNotifications() async {
@@ -43,6 +56,31 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  // TODO: Request permission
+  final messaging = FirebaseMessaging.instance;
+
+  final settings = await messaging.requestPermission(
+    alert: true,
+    announcement: false,
+    badge: true,
+    carPlay: false,
+    criticalAlert: false,
+    provisional: false,
+    sound: true,
+  );
+
+  if (kDebugMode) {
+    print('Permission granted: ${settings.authorizationStatus}');
+  }
+  // TODO: Register with FCM
+  // TODO: Set up foreground message handler
+  // TODO: Set up background message handler
+  String? token = await messaging.getToken();
+
+  if (kDebugMode) {
+    print('Registration Token=$token');
+  }
+
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   runApp(ChangeNotifierProvider(
